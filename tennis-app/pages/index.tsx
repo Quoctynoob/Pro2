@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
-import { Main } from "next/document";
+import Main from "@/app/components/Main";
 
 const HomePage = () => {
   return (
