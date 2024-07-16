@@ -1,4 +1,4 @@
-import Login from "@/app/components/Login";
+import Login from "@/app/components/loginForm";
 import Header from "@/app/components/Header";
 
 const LoginPage = () => {
