@@ -6,7 +6,7 @@ class MyDocument extends Document {
             <Html>
                 <Head>
                     {/*Favicon*/}
-                    <link rel="icon" href="/tennis-ball.ico"/>
+                    <link rel="icon" href="/public/favicon/tennis-ball.ico"/>
                 </Head>
                 <body className="custom-class">
                     <Main />

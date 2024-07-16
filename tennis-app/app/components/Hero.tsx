@@ -2,8 +2,8 @@ import React from "react";
 
 const Hero = () => {
     return (
-        <section className="bg-green-50 w-screen h-screen scroll-smooth">
-            <div className="">
+        <section id="hero" className="bg-green-50 w-full h-screen">
+            <div className="text-2xl">
                 Game, Set, Match!
             </div>
         </section>

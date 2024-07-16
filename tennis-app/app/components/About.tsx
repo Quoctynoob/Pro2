@@ -2,9 +2,9 @@ import React from "react";
 
 const About = () => {
     return (
-        <section className="bg-emerald-200 w-screen h-screen">
+        <section id= "about" className="bg-emerald-200 w-full h-screen p-8 snap-start">
             <div>
-                This is abut
+                
             </div>
         </section>
     );

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header = () => {
   return (
-    <header className="bg-black p-3 text-white shadow-md">
+    <header className="bg-black p-3 text-white shadow-md w-full snap-start">
       <div className="container mx-auto flex justify-between items-center">
         <h1 className="text-xl font-bold">Tennis Locator</h1>
         <nav>

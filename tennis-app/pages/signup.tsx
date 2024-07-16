@@ -1,4 +1,4 @@
-import SignUp from "@/app/components/signupForm";
+import SignUp from "@/app/components/SignUpForm";
 import Header from "@/app/components/Header";
 
 const SignUpPage = () => {
