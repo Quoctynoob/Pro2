@@ -3,7 +3,7 @@ import React from "react";
 
 const Hero = () => {
     const router = useRouter();
-    const handleSignUp = () => {
+    const SignUpButton = () => {
         router.push('/signup');
     };
 
@@ -13,7 +13,7 @@ const Hero = () => {
             <div className="h-[99px] w-[618px] p-2">
                 <div className="text-[64px] font-bold font-['Noto Sans Bengali']">Game, Set, Match!</div>
                 <div className="text-2xl font-normal font-['Kameron']">Find the ideal place to play tennis near you.</div>
-                <button onClick={handleSignUp} className="bg-lime-300 rounded-md w-[131px] h-8 text-center">
+                <button onClick={SignUpButton} className="bg-lime-300 rounded-md w-[131px] h-8 text-center">
                     Get Started
                 </button>
             </div>

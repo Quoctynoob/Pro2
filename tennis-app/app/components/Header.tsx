@@ -2,10 +2,14 @@ import React from 'react';
 
 const Header = () => {
   return (
-    <header className="bg-black p-4 text-white shadow-md w-full snap-start">
+    <header className="bg-black p-1 text-white shadow-md w-full snap-start">
       <div className="container mx-auto flex justify-between items-center">
-        <h1 className="text-xl font-bold">Tennis Locator</h1>
-        <nav>
+        <nav className='flex -ml-7'>
+          <img src="/icons/tennisball.svg" alt="Tennis Ball" className='w-16 h-16'/>
+          <span className="absolute left-10 mt-3 text-black text-2xl font-semibold font-['Noto Sans Bengali']">Te</span>
+          <span className="absolute left-16 mt-3 text-white text-2xl font-semibold font-['Noto Sans Bengali']">nnis Locator</span>
+        </nav>
+        <nav className='flex'>
           <ul className="flex space-x-4">
             <li><a href="/login" className="hover:underline">Login</a></li>
             <li><a href="/signup" className="hover:underline">Sign Up</a></li>
