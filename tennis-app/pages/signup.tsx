@@ -1,11 +1,11 @@
-import SignUp from "@/app/components/SignUpForm";
+import SignupForm from "@/app/components/SignUpForm";
 import Header from "@/app/components/Header";
 
 const SignUpPage = () => {
     return (
         <div>
             <Header/>
-            <SignUp/>
+            <SignupForm/>
         </div>
     );
 };
