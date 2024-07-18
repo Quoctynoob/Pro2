@@ -2,10 +2,12 @@
 import ProtectedRoute from "../app/components/ProtectedRoute";
 import DashboardContent from "@/app/components/DashboardContent";
 
-export default function DashboardPage() {
+const DashboardPage: React.FC = () => {
   return (
     <ProtectedRoute>
       <DashboardContent />
     </ProtectedRoute>
   );
-}
+};
+
+export default DashboardPage;

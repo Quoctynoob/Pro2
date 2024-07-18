@@ -57,9 +57,10 @@ export default SignUp;*/}
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/router";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase/firebaseConfig";
+import { auth, db } from "../firebase/firebaseConfig";
+import { doc, setDoc } from "firebase/firestore";
 
-export default function SignupForm() {
+const SignupForm: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
@@ -68,7 +69,16 @@ export default function SignupForm() {
   const handleSignup = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // Store user data in Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        email: user.email,
+        createdAt: new Date(),
+        note: ""
+      });
+
       router.push("/dashboard");
     } catch (err: any) {
       setError(err.message);
@@ -111,4 +121,6 @@ export default function SignupForm() {
       </div>
     </div>
   );
-}
+};
+
+export default SignupForm;
