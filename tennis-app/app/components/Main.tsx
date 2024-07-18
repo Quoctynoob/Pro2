@@ -6,8 +6,11 @@ import List from "./List";
 const Main = () => {
     return (
         <main>
+            <Main/>
             <Hero/>
+            <Main/>
             <About/>
+            <Main/>
             <List/>
         </main>
     );
