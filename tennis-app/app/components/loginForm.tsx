@@ -45,8 +45,7 @@ const Login = () => {
     );
   };
   
-  export default Login;*/}
-
+  export default Login;
 // app/components/LoginForm.tsx
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/router";
@@ -105,4 +104,4 @@ export default function LoginForm() {
       </div>
     </div>
   );
-}
+}*/}

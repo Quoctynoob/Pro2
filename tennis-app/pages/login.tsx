@@ -1,11 +1,11 @@
-import LoginForm from "@/app/components/LoginForm";
+import LoginModal from "@/app/components/LoginModal";
 import Header from "@/app/components/Header";
 
 const LoginPage = () => {
   return (
     <div>
       <Header/>
-      <LoginForm />
+      <LoginModal/>
     </div>
   );
 };

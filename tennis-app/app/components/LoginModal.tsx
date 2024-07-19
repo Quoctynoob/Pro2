@@ -1,8 +1,8 @@
 // app/components/LoginModal.tsx
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/router";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase/firebaseConfig";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth, googleProvider } from "../firebase/firebaseConfig";
 
 interface LoginModalProps {
   onClose: () => void;
@@ -20,6 +20,17 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
       await signInWithEmailAndPassword(auth, email, password);
       onClose(); // Close the modal on successful login
       router.push("/dashboard");
+    }
+    catch (err: any) {
+      setError(err.message);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+      onClose(); // Close the modal on successful login
+      router.push("/dashboard");
     } catch (err: any) {
       setError(err.message);
     }
@@ -34,9 +45,23 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
         >
           &times;
         </button>
-        <h1 className="text-2xl font-bold mb-6">Login</h1>
+        <h1 className="text-2xl font-bold mb-6 text-black">Login</h1>
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <form onSubmit={handleLogin}>
+          <div className="flex items-center justify-center">
+            <button className="flex items-center bg-white border border-gray-300 rounded-lg shadow-md px-16 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" onClick={handleGoogleSignIn}>
+                <img src="/icons/google.svg" alt="" className="h-6 w-6 mr-2"/>
+                <span>Continue with Google</span>
+            </button>
+          </div>
+
+          <div className="my-12 border-b text-center">
+                        <div
+                            className="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
+                            Or Sign in with e-mail
+                        </div>
+                    </div>
+            
           <div className="mb-4">
             <label className="block text-gray-700">Email</label>
             <input
@@ -47,6 +72,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
               required
             />
           </div>
+
           <div className="mb-4">
             <label className="block text-gray-700">Password</label>
             <input
@@ -57,12 +83,18 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
               required
             />
           </div>
+
           <button
             type="submit"
             className="w-full bg-blue-500 text-white p-2 rounded"
           >
             Login
           </button>
+
+          <div className="text-black">
+            <label>Don't have an account with us?</label>
+            <a href="/signup" className="text-blue-500"><u>Register Here</u></a>
+          </div>
         </form>
       </div>
     </div>

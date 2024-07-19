@@ -1,6 +1,19 @@
 import React from 'react';
+import { useState } from 'react';
+import LoginModal from './LoginModal';
+import { useRouter } from 'next/router';
 
 const Header = () => {
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
+  const openLoginModal = () => {
+    setIsLoginModalOpen(true);
+  };
+
+  const closeLoginModal = () => {
+    setIsLoginModalOpen(false);
+  };
+
   return (
     <header className="bg-black p-1 text-white shadow-md w-full snap-start">
       <div className="container mx-auto flex justify-between items-center">
@@ -11,10 +24,8 @@ const Header = () => {
           
         </nav>
         <nav className='flex'>
-          <ul className="flex space-x-4">
-            <li><a href="/login" className="hover:underline">Login</a></li>
-            <li><a href="/signup" className="hover:underline">Sign Up</a></li>
-          </ul>
+          <button onClick={openLoginModal} className=''>Login</button>
+          {isLoginModalOpen && <LoginModal onClose={closeLoginModal} />}
         </nav>
       </div>
     </header>

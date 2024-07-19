@@ -26,12 +26,7 @@ const AuthForm: React.FC = () => {
           >
             Login
           </button>
-          <button
-            onClick={() => router.push("/signup")}
-            className="w-full bg-green-500 text-white p-2 rounded"
-          >
-            Signup
-          </button>
+          
         </div>
       </div>
 
