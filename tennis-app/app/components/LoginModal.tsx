@@ -2,7 +2,7 @@
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/router";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { auth, googleProvider } from "../firebase/firebaseConfig";
+import { auth, googleProvider, githubProvider } from "../firebase/firebaseConfig";
 
 interface LoginModalProps {
   onClose: () => void;
@@ -31,7 +31,19 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
       await signInWithPopup(auth, googleProvider);
       onClose(); // Close the modal on successful login
       router.push("/dashboard");
-    } catch (err: any) {
+    }
+    catch (err: any) {
+      setError(err.message);
+    }
+  };
+
+  const handleGithubSignIn = async () => {
+    try {
+      await signInWithPopup(auth, githubProvider);
+      onClose();
+      router.push("/dashboard");
+    }
+    catch (err: any) {
       setError(err.message);
     }
   };
@@ -49,18 +61,24 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <form onSubmit={handleLogin}>
           <div className="flex items-center justify-center">
-            <button className="flex items-center bg-white border border-gray-300 rounded-lg shadow-md px-16 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" onClick={handleGoogleSignIn}>
-                <img src="/icons/google.svg" alt="" className="h-6 w-6 mr-2"/>
+            <button type="button" className="flex items-center bg-white border border-gray-300 rounded-lg shadow-md px-16 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" onClick={handleGoogleSignIn}>
+                <img src="/icons/logingoogle.svg" alt="google icon" className="h-6 w-6 mr-2"/>
                 <span>Continue with Google</span>
             </button>
           </div>
 
+          <div className="flex items-center justify-center">
+            <button type="button" className="py-2 px-4 max-w-md flex justify-center items-center bg-gray-600 hover:bg-gray-700 focus:ring-gray-500 focus:ring-offset-gray-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg" onClick={handleGithubSignIn}>
+              <img src="/icons/logingithub.svg" alt="github icon" />
+              <span>Continue with GitHub</span>
+            </button>
+          </div>
+
           <div className="my-12 border-b text-center">
-                        <div
-                            className="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
-                            Or Sign in with e-mail
-                        </div>
-                    </div>
+            <div className="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
+                Or Sign in with e-mail
+            </div>
+          </div>
             
           <div className="mb-4">
             <label className="block text-gray-700">Email</label>
@@ -92,7 +110,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
           </button>
 
           <div className="text-black">
-            <label>Don't have an account with us?</label>
+            <label>Don't have an account with us? </label>
             <a href="/signup" className="text-blue-500"><u>Register Here</u></a>
           </div>
         </form>
