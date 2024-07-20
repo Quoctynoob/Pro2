@@ -86,7 +86,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
             <label className="block text-gray-700">Email</label>
             <input
               type="email"
-              className="w-full p-2 border border-gray-300 rounded mt-1"
+              className="w-full p-2 border border-gray-300 rounded mt-1 text-black"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -97,7 +97,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
             <label className="block text-gray-700">Password</label>
             <input
               type="password"
-              className="w-full p-2 border border-gray-300 rounded mt-1"
+              className="w-full p-2 border border-gray-300 rounded mt-1 text-black"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required

@@ -1,9 +1,7 @@
-// app/components/DashboardContent.tsx
-import { auth, db } from "../firebase/firebaseConfig";
-// app/components/DashboardContent.tsx
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { onAuthStateChanged, User, signOut } from "firebase/auth";
+import { auth, db } from "../firebase/firebaseConfig";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 const DashboardContent: React.FC = () => {
@@ -23,7 +21,8 @@ const DashboardContent: React.FC = () => {
           setUserData(userDoc.data());
           setNote(userDoc.data().note || "");
         }
-      } else {
+      } 
+      else {
         router.push("/login");
       }
     });
@@ -62,16 +61,10 @@ const DashboardContent: React.FC = () => {
                   onChange={(e) => setNote(e.target.value)}
                 ></textarea>
               </div>
-              <button
-                onClick={handleSaveNote}
-                className="bg-blue-500 text-white p-2 rounded"
-              >
+              <button onClick={handleSaveNote} className="bg-blue-500 text-white p-2 rounded">
                 Save Note
               </button>
-              <button
-                onClick={handleLogout}
-                className="bg-red-500 text-white p-2 rounded mt-4"
-              >
+              <button onClick={handleLogout} className="bg-red-500 text-white p-2 rounded mt-4">
                 Logout
               </button>
             </div>

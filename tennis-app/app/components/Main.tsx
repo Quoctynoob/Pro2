@@ -7,11 +7,8 @@ import Header from "./Header";
 const Main = () => {
     return (
         <main>
-            
             <Hero/>
-            
             <About/>
-            
             <List/>
         </main>
     );

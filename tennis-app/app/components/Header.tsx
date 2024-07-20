@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
 import LoginModal from './LoginModal';
-import { useRouter } from 'next/router';
 
 const Header = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
