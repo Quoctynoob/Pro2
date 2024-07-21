@@ -5,3 +5,5 @@ const Map: React.FC = () => {
         <div>Map layout</div>
     );
 };
+
+export default Map;
