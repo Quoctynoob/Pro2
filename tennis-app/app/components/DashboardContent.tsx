@@ -30,25 +30,17 @@ const DashboardContent: React.FC = () => {
         }
       } 
       else {
-        router.push("/login");
+        router.push("/");
       }
     });
 
     return () => unsubscribe();
   }, [router]);
 
-  const handleSaveNote = async () => {
-    if (user) {
-      await updateDoc(doc(db, "users", user.uid), {
-        note
-      });
-      alert("Note saved successfully!");
-    }
-  };
 
   const handleLogout = async () => {
     await signOut(auth);
-    router.push("/login");
+    router.push("/");
   };
 
   const renderContent = () => {
@@ -74,18 +66,6 @@ const DashboardContent: React.FC = () => {
                 <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
                 <p className="text-xl mb-4">Welcome, {userData.email}</p>
                 {renderContent()}
-                <div className="mt-4">
-                  <label className="block text-gray-700">Your Note</label>
-                  <textarea
-                    className="w-full p-2 border border-gray-300 rounded mt-1"
-                    rows={5}
-                    value={note}
-                    onChange={(e) => setNote(e.target.value)}
-                  ></textarea>
-                </div>
-                <button onClick={handleSaveNote} className="bg-blue-500 text-white p-2 rounded mt-2">
-                  Save Note
-                </button>
                 <button onClick={handleLogout} className="bg-red-500 text-white p-2 rounded mt-2">
                   Logout
                 </button>
@@ -99,6 +79,7 @@ const DashboardContent: React.FC = () => {
         </div>
       </div>
     </div>
+    
   );
 };
 

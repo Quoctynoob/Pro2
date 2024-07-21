@@ -1,10 +1,21 @@
 import React from "react";
+import { auth, db } from "../firebase/firebaseConfig";
+import { onAuthStateChanged, User, signOut } from "firebase/auth";
+import { useRouter } from "next/router";
 
 interface SideNavbarProps {
     setView: (view: string) => void;
 }
 
 const SideNavbar: React.FC<SideNavbarProps> = ({ setView }) => {
+    const router = useRouter();
+
+
+    const handleLogout = async () => {
+        await signOut(auth);
+        router.push("/");
+      };
+
     return (
         <nav className="fixed h-screen w-64 bg-black">
             <ul>
@@ -29,7 +40,7 @@ const SideNavbar: React.FC<SideNavbarProps> = ({ setView }) => {
                     </button>
                 </li>
                 <li>
-                    <button className="text-white">
+                    <button onClick={handleLogout} className="text-white">
                         Logout
                     </button>
                 </li>

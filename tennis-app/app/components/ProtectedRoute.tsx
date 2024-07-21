@@ -18,7 +18,7 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
       if (user) {
         setAuthenticated(true);
       } else {
-        router.push("/login");
+        router.push("/");
       }
       setLoading(false);
     });
