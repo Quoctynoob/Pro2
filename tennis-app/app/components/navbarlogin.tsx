@@ -1,11 +1,27 @@
 import React from "react";
 
+interface SideNavbarProps {
+    setView: (view: string) => void;
+}
+
 const SideNavbar = () => {
     return (
         <nav className="fixed h-screen w-64 bg-black">
             <ul>
                 <li>
-                    <a href="/dashboard" className="text-white ">Home</a>
+                    
+                </li>
+                <li>
+                    
+                </li>
+                <li>
+                    
+                </li>
+                <li>
+                    
+                </li>
+                <li>
+                    
                 </li>
             </ul>
         </nav>
