@@ -63,12 +63,7 @@ const DashboardContent: React.FC = () => {
           {user ? (
             userData ? (
               <div>
-                <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
-                <p className="text-xl mb-4">Welcome, {userData.email}</p>
                 {renderContent()}
-                <button onClick={handleLogout} className="bg-red-500 text-white p-2 rounded mt-2">
-                  Logout
-                </button>
               </div>
             ) : (
               <p>Loading user data...</p>
