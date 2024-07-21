@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { onAuthStateChanged, User, signOut } from "firebase/auth";
 import { auth, db } from "../firebase/firebaseConfig";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
+import SideNavbar from "./navbarlogin";
 
 const DashboardContent: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -45,7 +46,7 @@ const DashboardContent: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
+   /*<div className="min-h-screen bg-gray-100 p-6">
       <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-8">
         {user ? (
           userData ? (
@@ -75,6 +76,9 @@ const DashboardContent: React.FC = () => {
           <p>Loading...</p>
         )}
       </div>
+    </div>*/
+    <div className="bg-green-50 min-h-screen">
+      <SideNavbar/>
     </div>
   );
 };
