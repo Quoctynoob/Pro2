@@ -37,12 +37,6 @@ const DashboardContent: React.FC = () => {
     return () => unsubscribe();
   }, [router]);
 
-
-  const handleLogout = async () => {
-    await signOut(auth);
-    router.push("/");
-  };
-
   const renderContent = () => {
     switch(view) {
       case 'map':
@@ -57,7 +51,7 @@ const DashboardContent: React.FC = () => {
   }
   return (
     <div className="flex">
-      <SideNavbar setView={setView} /> {/* Add the Sidebar component */}
+      <SideNavbar setView={setView} activeView={view}/> {/* Add the Sidebar component */}
       <div className="flex-1 min-h-screen bg-gray-100 p-6 ml-64">
         <div className="w-full max-w-4xl bg-white shadow-md rounded-lg p-8">
           {user ? (
