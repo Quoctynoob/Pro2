@@ -1,8 +1,11 @@
 import React from "react";
+import SearchBar from "./SearchBar";
 
 const Home: React.FC = () => {
     return (
-        <div>Home Layout</div>
+        <div>
+            <SearchBar/>
+        </div>
     );
 };
 

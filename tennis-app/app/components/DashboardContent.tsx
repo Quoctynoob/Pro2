@@ -52,8 +52,7 @@ const DashboardContent: React.FC = () => {
   return (
     <div className="flex">
       <SideNavbar setView={setView} activeView={view}/> {/* Add the Sidebar component */}
-      <div className="flex-1 min-h-screen bg-gray-100 p-6 ml-64">
-        <div className="w-full max-w-4xl bg-white shadow-md rounded-lg p-8">
+      <div className="flex-1 min-h-screen bg-green-50 p-6 ml-64">       
           {user ? (
             userData ? (
               <div>
@@ -65,7 +64,6 @@ const DashboardContent: React.FC = () => {
           ) : (
             <p>Loading...</p>
           )}
-        </div>
       </div>
     </div>
     
