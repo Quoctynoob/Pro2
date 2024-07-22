@@ -21,27 +21,27 @@ const SideNavbar: React.FC<SideNavbarProps> = ({ setView, activeView  }) => {
         <nav className="fixed h-screen w-64 bg-black">
             <ul className="flex flex-col p-4">
                 <li className="mb-4">
-                    <button onClick={() => setView('home')} className={`text-white ${activeView === 'home' ? 'bg-white !text-black rounded-lg' : ''}`}>
+                    <button onClick={() => setView('home')} className={`text-2xl w-full py-4 px-2 mb-2 transition-colors duration-300 rounded-md ${activeView === 'home' ? 'bg-white !text-black' : 'text-white'}`}>
                         Home
                     </button>
                 </li>
                 <li>
-                    <button onClick={() => setView('map')} className={`text-white ${activeView === 'map' ? 'bg-white !text-black' : ''}`}>
+                    <button onClick={() => setView('map')} className={`text-2xl w-full py-4 px-2 mb-2 transition-colors duration-300 rounded-md ${activeView === 'map' ? 'bg-white !text-black' : 'text-white'}`}>
                         Map
                     </button>
                 </li>
                 <li>
-                    <button onClick={() => setView('favorite')} className={`text-white ${activeView === 'favorite' ? 'bg-white !text-black' : ''}`}>
+                    <button onClick={() => setView('favorite')} className={`text-2xl w-full py-4 px-2 mb-2 transition-colors duration-300 rounded-md ${activeView === 'favorite' ? 'bg-white !text-black' : 'text-white'}`}>
                         Favorite
                     </button>
                 </li>
                 <li>
-                    <button onClick={() => setView('addcourts')} className={`text-white ${activeView === 'addcourts' ? 'bg-white !text-black' : ''}`}>
+                    <button onClick={() => setView('addcourts')} className={`text-2xl w-full py-4 px-2 mb-2 transition-colors duration-300 rounded-md ${activeView === 'addcourts' ? 'bg-white !text-black' : 'text-white'}`}>
                         Add Courts
                     </button>
                 </li>
                 <li>
-                    <button onClick={handleLogout} className="text-white">
+                    <button onClick={handleLogout} className="text-white text-2xl w-full py-4 px-2 mb-2">
                         Logout
                     </button>
                 </li>
