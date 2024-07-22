@@ -20,7 +20,7 @@ const SearchBar: React.FC = () => {
         placeholder="Search"
         className="p-2 border border-gray-300 rounded-xl flex justify-end w-full h-12"/>
       <button onClick={handleSearch}>
-        <img src="icons/searchicon.svg" alt="Search Icon" className='size-10' />
+        <img src="icons/searchicon.svg" alt="Search Icon" className='size-10'/>
       </button>
     </div>
   );
