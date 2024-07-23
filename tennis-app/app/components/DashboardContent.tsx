@@ -9,6 +9,7 @@ import Home from "./Home";
 import Map from "./Map";
 import Favorite from "./Favorite";
 import AddCourts from "./AddCourts";
+import ProtectedRoute from "./ProtectedRoute";
 
 const DashboardContent: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -40,13 +41,29 @@ const DashboardContent: React.FC = () => {
   const renderContent = () => {
     switch(view) {
       case 'map':
-        return <Map/>
+        return (
+          <ProtectedRoute>
+            <Map/>
+          </ProtectedRoute>
+        )
       case 'favorite':
-        return <Favorite/>
+        return (
+          <ProtectedRoute>
+            <Favorite/>
+          </ProtectedRoute>
+        )
       case 'addcourts':
-        return <AddCourts/>
+        return (
+          <ProtectedRoute>
+            <AddCourts/>
+          </ProtectedRoute>
+        )
       default:
-        return <Home/>
+        return (
+          <ProtectedRoute>
+            <Home/>
+          </ProtectedRoute>
+        )
     }
   }
   return (
