@@ -1,14 +1,34 @@
 import React from 'react';
+import { db } from '../firebase/firebaseConfig';
+import { doc, setDoc, deleteDoc } from 'firebase/firestore';
 
 interface CourtCardProps {
+  userId: string;
   id: string;
   name: string;
   image: string;
+  onToggleFavorite: (id: string) => void;
+  isFavorite: boolean;
+  starImage: string;
+  filledStarImage: string;
 }
 
-const CourtCard: React.FC<CourtCardProps> = ({ id, name, image }) => {
+const CourtCard: React.FC<CourtCardProps> = ({ userId, id, name, image, onToggleFavorite, isFavorite, starImage, filledStarImage }) => {
+  const handleToggleFavorite = async () => {
+    onToggleFavorite(id);
+    const courtRef = doc(db, 'users', userId, 'favorites', id);
+    if (isFavorite) {
+      await deleteDoc(courtRef);
+    } else {
+      await setDoc(courtRef, { id, name, image });
+    }
+  };
+
   return (
     <div className="relative bg-white flex flex-col justify-between border rounded shadow-md hover:shadow-primary-400">
+      <div className="absolute top-2 left-2 cursor-pointer" onClick={handleToggleFavorite}>
+        <img src={isFavorite ? filledStarImage : starImage} alt="star" className="w-6 h-6" />
+      </div>
       <div className="relative">
         <div className="relative w-full aspect-video">
           <img src={image} alt={name} className="w-full h-full object-cover" />
