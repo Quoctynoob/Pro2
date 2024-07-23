@@ -1,66 +1,56 @@
+// SearchBar.tsx
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-
-const availableCourts = [
-  'Court 1',
-  'Court 2',
-  'Court 3', 
-];
+import { courts } from '@/data/courtsData'; // Import the courts data
 
 const SearchBar: React.FC = () => {
   const [query, setQuery] = useState('');
-  const [filteredCourts, setFilteredCourts] = useState(availableCourts);
+  const [filteredCourts, setFilteredCourts] = useState(courts);
   const router = useRouter();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
+    const value = e.target.value.toLowerCase();
     setQuery(value);
     setFilteredCourts(
-      availableCourts.filter((court) =>
-        court.toLowerCase().includes(value.toLowerCase())
+      courts.filter((court) =>
+        court.name.toLowerCase().includes(value)
       )
     );
   };
 
-  const handleSearch = () => {
-    if (query) {
-      router.push(`/courts?name=${query}`);
-    }
+  const handleSearch = (court: any) => {
+    router.push(`/courts/${court.id}`);
   };
 
   return (
-    <div className="flex items-center mb-4">
-      <div className="relative w-full">
-        <input
-          type="text"
-          value={query}
-          onChange={handleInputChange}
-          placeholder="Search courts..."
-          className="p-2 border border-gray-300 rounded-l w-full"
-        />
-        {query && (
-          <ul className="absolute bg-white border border-gray-300 w-full mt-1 rounded shadow-lg z-10">
-            {filteredCourts.map((court) => (
-              <li
-                key={court}
-                onClick={() => {
-                  setQuery(court);
-                  setFilteredCourts([]);
-                }}
-                className="p-2 hover:bg-gray-200 cursor-pointer"
-              >
-                {court}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+    <div className="relative mb-4">
+      <input
+        type="text"
+        value={query}
+        onChange={handleInputChange}
+        placeholder="Search courts..."
+        className="p-2 border border-gray-300 rounded"
+      />
       <button
-        onClick={handleSearch}
-        className="p-2 bg-blue-500 text-white rounded-r"
+        className="p-2 bg-blue-500 text-white rounded"
+        onClick={() => handleSearch(filteredCourts[0])}
       >
         Search
       </button>
+      {query && (
+        <ul className="absolute bg-white border border-gray-300 rounded mt-1 w-full z-10">
+          {filteredCourts.map((court) => (
+            <li
+              key={court.id}
+              className="p-2 flex items-center cursor-pointer hover:bg-gray-100"
+              onClick={() => handleSearch(court)}
+            >
+              <img src={court.image} alt={court.name} className="w-10 h-10 mr-2" />
+              {court.name}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

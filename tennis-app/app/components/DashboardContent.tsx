@@ -8,8 +8,7 @@ import SideNavbar from "./navbarlogin";
 import Home from "./Home";
 import Map from "./Map";
 import Favorite from "./Favorite";
-import AddCourts from "./AddCourts";
-import ProtectedRoute from "./ProtectedRoute";
+import SearchBar from "./SearchBar";
 
 const DashboardContent: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -41,35 +40,18 @@ const DashboardContent: React.FC = () => {
   const renderContent = () => {
     switch(view) {
       case 'map':
-        return (
-          <ProtectedRoute>
-            <Map/>
-          </ProtectedRoute>
-        )
+        return <Map/>
       case 'favorite':
-        return (
-          <ProtectedRoute>
-            <Favorite/>
-          </ProtectedRoute>
-        )
-      case 'addcourts':
-        return (
-          <ProtectedRoute>
-            <AddCourts/>
-          </ProtectedRoute>
-        )
+        return <Favorite/>
       default:
-        return (
-          <ProtectedRoute>
-            <Home/>
-          </ProtectedRoute>
-        )
+        return <Home/>
     }
   }
   return (
     <div className="flex">
       <SideNavbar setView={setView} activeView={view}/> {/* Add the Sidebar component */}
-      <div className="flex-1 min-h-screen bg-green-50 p-6 ml-64">       
+      <div className="flex-1 min-h-screen bg-green-50 p-6 ml-64">
+          <SearchBar />
           {user ? (
             userData ? (
               <div>

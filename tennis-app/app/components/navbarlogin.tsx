@@ -36,11 +36,6 @@ const SideNavbar: React.FC<SideNavbarProps> = ({ setView, activeView  }) => {
                     </button>
                 </li>
                 <li>
-                    <button onClick={() => setView('addcourts')} className={`text-2xl w-full py-4 px-2 mb-2 transition-colors duration-300 rounded-md ${activeView === 'addcourts' ? 'bg-white !text-black' : 'text-white'}`}>
-                        Add Courts
-                    </button>
-                </li>
-                <li>
                     <button onClick={handleLogout} className="text-white text-2xl w-full py-4 px-2 mb-2">
                         Logout
                     </button>
