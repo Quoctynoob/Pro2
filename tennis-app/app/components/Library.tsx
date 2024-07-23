@@ -48,8 +48,6 @@ const Library: React.FC = () => {
             image={court.image}
             onToggleFavorite={handleToggleFavorite}
             isFavorite={favorites.includes(court.id)}
-            starImage="/path/to/your/star.png"
-            filledStarImage="/path/to/your/filled-star.png"
           />
         ))}
       </div>

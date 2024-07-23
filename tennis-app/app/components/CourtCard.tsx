@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaStar } from 'react-icons/fa';
 import { db } from '../firebase/firebaseConfig';
 import { doc, setDoc, deleteDoc } from 'firebase/firestore';
 
@@ -9,11 +10,9 @@ interface CourtCardProps {
   image: string;
   onToggleFavorite: (id: string) => void;
   isFavorite: boolean;
-  starImage: string;
-  filledStarImage: string;
 }
 
-const CourtCard: React.FC<CourtCardProps> = ({ userId, id, name, image, onToggleFavorite, isFavorite, starImage, filledStarImage }) => {
+const CourtCard: React.FC<CourtCardProps> = ({ userId, id, name, image, onToggleFavorite, isFavorite }) => {
   const handleToggleFavorite = async () => {
     onToggleFavorite(id);
     const courtRef = doc(db, 'users', userId, 'favorites', id);
@@ -27,7 +26,7 @@ const CourtCard: React.FC<CourtCardProps> = ({ userId, id, name, image, onToggle
   return (
     <div className="relative bg-white flex flex-col justify-between border rounded shadow-md hover:shadow-primary-400">
       <div className="absolute top-2 left-2 cursor-pointer" onClick={handleToggleFavorite}>
-        <img src={isFavorite ? filledStarImage : starImage} alt="star" className="w-6 h-6" />
+        <FaStar className={`w-6 h-6 ${isFavorite ? 'text-yellow-500' : 'text-gray-300'}`} />
       </div>
       <div className="relative">
         <div className="relative w-full aspect-video">
