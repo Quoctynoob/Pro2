@@ -8,6 +8,7 @@ import SideNavbar from "./navbarlogin";
 import Home from "./Home";
 import Map from "./Map";
 import Favorite from "./Favorite";
+import Library from "./Library";
 import SearchBar from "./SearchBar";
 
 const DashboardContent: React.FC = () => {
@@ -43,6 +44,8 @@ const DashboardContent: React.FC = () => {
         return <Map/>
       case 'favorite':
         return <Favorite/>
+      case 'library':
+        return <Library/>
       default:
         return <Home/>
     }
