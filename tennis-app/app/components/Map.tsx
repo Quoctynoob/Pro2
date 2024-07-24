@@ -21,6 +21,7 @@ const Map: React.FC = () => {
 
   const [visibleCourts, setVisibleCourts] = useState(courts);
   const [selectedCourt, setSelectedCourt] = useState<any | null>(null);
+  const [showMarkers, setShowMarkers] = useState(false); // State to manage marker visibility
 
   const onMarkerClick = (court: any) => {
     setSelectedCourt(court);
@@ -34,11 +35,15 @@ const Map: React.FC = () => {
     }
   };
 
+  const toggleMarkers = () => {
+    setShowMarkers(!showMarkers);
+  };
+
   if (loadError) return <div>Error loading maps</div>;
   if (!isLoaded) return <div>Loading Maps...</div>;
 
   return (
-    <div>
+    <div className="relative">
       <h2>Google Map</h2>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
@@ -47,7 +52,7 @@ const Map: React.FC = () => {
         onLoad={map => onBoundsChanged(map)}
         onBoundsChanged={() => onBoundsChanged}
       >
-        {visibleCourts.map((court) => (
+        {showMarkers && visibleCourts.map((court) => (
           <Marker
             key={court.id}
             position={{ lat: court.lat, lng: court.lng }}
@@ -73,6 +78,12 @@ const Map: React.FC = () => {
           </InfoWindow>
         )}
       </GoogleMap>
+      <button
+        onClick={toggleMarkers}
+        className="absolute bottom-6 left-2 bg-lime-300 rounded-md px-4 py-2 text-lg font-semibold transition-transform transform hover:scale-105"
+      >
+        {showMarkers ? 'Hide Markers' : 'Display All Markers'}
+      </button>
     </div>
   );
 };

@@ -19,7 +19,7 @@ const Hero = () => {
                 </button>
             </div>
 
-            <div className="w-1/2 h-full">
+            <div className="w-1/2 h-auto rounded-xl">
                 <Carousel 
                     showArrows={true} 
                     showThumbs={false} 
@@ -29,15 +29,14 @@ const Hero = () => {
                     interval={3000}
                 >
                     <div>
-                        <img src="/images/tennis1.jpg" alt="Tennis Image 1" />
+                        <img src="/images/claycourt.jpg" alt="Clay Court" className="h-full object-cover rounded-xl"/>
                     </div>
                     <div>
-                        <img src="/images/tennis2.jpg" alt="Tennis Image 2" />
+                        <img src="/images/grasscourt.jpg" alt="Grass Court" className="h-full object-cover rounded-xl"/>
                     </div>
                     <div>
-                        <img src="/images/tennis3.jpg" alt="Tennis Image 3" />
+                        <img src="/images/hardcourt.jpeg" alt="Hard Court" className="h-full object-cover rounded-xl"/>
                     </div>
-                    {/* Add more images as needed */}
                 </Carousel>
             </div>
         </section>
