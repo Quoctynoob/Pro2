@@ -8,8 +8,8 @@ const mapContainerStyle = {
   height: '400px',
 };
 const center = {
-  lat: 37.7749,
-  lng: -122.4194,
+  lat: 43.65307591580248,
+  lng: -79.38768760409539,
 };
 
 interface MarkerType {
