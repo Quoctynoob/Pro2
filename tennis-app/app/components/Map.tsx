@@ -1,6 +1,7 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps/api';
-import { Libraries } from '@react-google-maps/api/dist/utils/make-load-script-url'; // Import the correct type
+import { Libraries } from '@react-google-maps/api/dist/utils/make-load-script-url';
+import { courts } from '@/data/courtsData'; // Ensure this path is correct
 
 const libraries: Libraries = ['places'];
 const mapContainerStyle = {
@@ -12,47 +13,25 @@ const center = {
   lng: -79.38768760409539,
 };
 
-interface MarkerType {
-  id: string;
-  lat: number;
-  lng: number;
-  name: string;
-  time: Date;
-}
-
 const Map: React.FC = () => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string, // Ensure this is set in your environment variables
     libraries,
   });
 
-  const [markers, setMarkers] = useState<MarkerType[]>([]);
-  const [selectedMarker, setSelectedMarker] = useState<MarkerType | null>(null);
+  const [visibleCourts, setVisibleCourts] = useState(courts);
+  const [selectedCourt, setSelectedCourt] = useState<any | null>(null);
 
-  const onMapClick = useCallback((event: google.maps.MapMouseEvent) => {
-    if (event.latLng) {
-      const name = prompt("Enter a name for the marker:");
-      if (name) {
-        setMarkers((current) => [
-          ...current,
-          {
-            id: new Date().toISOString(),
-            lat: event.latLng!.lat(), // Use non-null assertion
-            lng: event.latLng!.lng(), // Use non-null assertion
-            name,
-            time: new Date(),
-          },
-        ]);
-      }
-    }
-  }, []);
-
-  const onMarkerClick = (marker: MarkerType) => {
-    setSelectedMarker(marker);
+  const onMarkerClick = (court: any) => {
+    setSelectedCourt(court);
   };
 
-  const onMarkerRightClick = (markerId: string) => {
-    setMarkers((current) => current.filter((marker) => marker.id !== markerId));
+  const onBoundsChanged = (map: google.maps.Map) => {
+    const bounds = map.getBounds();
+    if (bounds) {
+      const visible = courts.filter(court => bounds.contains(new google.maps.LatLng(court.lat, court.lng)));
+      setVisibleCourts(visible);
+    }
   };
 
   if (loadError) return <div>Error loading maps</div>;
@@ -65,29 +44,34 @@ const Map: React.FC = () => {
         mapContainerStyle={mapContainerStyle}
         zoom={10}
         center={center}
-        onClick={onMapClick}
+        onLoad={map => onBoundsChanged(map)}
+        onBoundsChanged={() => onBoundsChanged}
       >
-        {markers.map((marker) => (
+        {visibleCourts.map((court) => (
           <Marker
-            key={marker.id}
-            position={{ lat: marker.lat, lng: marker.lng }}
-            onClick={() => onMarkerClick(marker)}
-            onRightClick={() => onMarkerRightClick(marker.id)}
-          >
-            {selectedMarker?.id === marker.id && (
-              <InfoWindow
-                position={{ lat: selectedMarker.lat, lng: selectedMarker.lng }}
-                onCloseClick={() => setSelectedMarker(null)}
-              >
-                <div>
-                  <h2>{selectedMarker.name}</h2>
-                  <p>{selectedMarker.time.toLocaleString()}</p>
-                  <button onClick={() => onMarkerRightClick(selectedMarker.id)}>Delete</button>
-                </div>
-              </InfoWindow>
-            )}
-          </Marker>
+            key={court.id}
+            position={{ lat: court.lat, lng: court.lng }}
+            title={court.name}
+            onClick={() => onMarkerClick(court)}
+          />
         ))}
+        {selectedCourt && (
+          <InfoWindow
+            position={{ lat: selectedCourt.lat, lng: selectedCourt.lng }}
+            onCloseClick={() => setSelectedCourt(null)}
+            options={{ pixelOffset: new google.maps.Size(0, -30) }}
+          >
+            <div>
+              <h2>{selectedCourt.name}</h2>
+              <p>{selectedCourt.description}</p>
+              <ul>
+                {selectedCourt.tags.map((tag: string, index: number) => (
+                  <li key={index}>{tag}</li>
+                ))}
+              </ul>
+            </div>
+          </InfoWindow>
+        )}
       </GoogleMap>
     </div>
   );

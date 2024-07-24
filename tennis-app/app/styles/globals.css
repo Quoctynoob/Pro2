@@ -59,3 +59,12 @@ a:hover .name-container {
   transform: translateY(0);
   opacity: 1;
 }
+
+.marker-info-box {
+  pointer-events: none;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}

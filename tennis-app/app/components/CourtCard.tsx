@@ -13,9 +13,9 @@ const CourtCard: React.FC<CourtCardProps> = ({ id, name, image, tags, link }) =>
   return (
     <Link href={link} legacyBehavior>
       <a className="relative bg-black flex flex-col justify-between border rounded-xl shadow-md transition duration-500 hover:scale-105 transform-gpu shadow-primary-400" id={id}>
-        <div className="relative w-full rounded-xl overflow-hidden">
+        <div className="relative w-full rounded-t-xl overflow-hidden">
           <div className="relative w-full aspect-video">
-            <img src={image} alt={name} className="w-full h-full object-cover rounded-t-xl" />
+            <img src={image} alt={name} className="w-full h-full object-cover" />
             <div className="absolute bottom-0 left-1 p-1 bg-gradient-to-b text-black bg-mintCream name-container">
               <h2 className="text-sm font-semibold">{name}</h2>
             </div>
