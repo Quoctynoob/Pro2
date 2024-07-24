@@ -1,33 +1,14 @@
 import React from 'react';
-import { FaStar } from 'react-icons/fa';
-import { db } from '../firebase/firebaseConfig';
-import { doc, setDoc, deleteDoc } from 'firebase/firestore';
 
 interface CourtCardProps {
-  userId: string;
   id: string;
   name: string;
   image: string;
-  onToggleFavorite: (id: string) => void;
-  isFavorite: boolean;
 }
 
-const CourtCard: React.FC<CourtCardProps> = ({ userId, id, name, image, onToggleFavorite, isFavorite }) => {
-  const handleToggleFavorite = async () => {
-    onToggleFavorite(id);
-    const courtRef = doc(db, 'users', userId, 'favorites', id);
-    if (isFavorite) {
-      await deleteDoc(courtRef);
-    } else {
-      await setDoc(courtRef, { id, name, image });
-    }
-  };
-
+const CourtCard: React.FC<CourtCardProps> = ({ id, name, image }) => {
   return (
     <div className="relative bg-white flex flex-col justify-between border rounded shadow-md hover:shadow-primary-400">
-      <div className="absolute top-2 left-2 cursor-pointer" onClick={handleToggleFavorite}>
-        <FaStar className={`w-6 h-6 ${isFavorite ? 'text-yellow-500' : 'text-gray-300'}`} />
-      </div>
       <div className="relative">
         <div className="relative w-full aspect-video">
           <img src={image} alt={name} className="w-full h-full object-cover" />
