@@ -31,3 +31,31 @@ body {
     text-wrap: balance;
   }
 }
+
+.transform-gpu {
+  will-change: transform;
+  transform-origin: center;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Apply the animation to the name container */
+.name-container {
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+a:hover .name-container {
+  transform: translateY(0);
+  opacity: 1;
+}

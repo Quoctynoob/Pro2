@@ -21,6 +21,9 @@ const config: Config = {
         'accent': '#9cd043',
         'boxDark': '#162717',
         'boxLight': '#E2F2E2',
+
+        'modpurple': '#95ADE5',
+        
       },
     },
   },
