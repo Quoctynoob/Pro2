@@ -1,6 +1,6 @@
 import React from 'react';
 import { courts } from '@/data/courtsData'; // Adjust the path as needed
-import CourtCard from '../components/CourtCard'; // Import the CourtCard component
+import CourtCard from '../reusable/CourtCard'; // Import the CourtCard component
 
 const Library: React.FC = () => {
   return (

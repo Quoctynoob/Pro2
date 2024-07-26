@@ -2,7 +2,7 @@
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/router";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { auth, googleProvider, githubProvider } from "../firebase/firebaseConfig";
+import { auth, googleProvider, githubProvider } from "@/app/firebase/firebaseConfig";
 
 interface LoginModalProps {
   onClose: () => void;

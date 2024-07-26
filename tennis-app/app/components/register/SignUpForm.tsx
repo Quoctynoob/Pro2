@@ -2,7 +2,7 @@
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/router";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, db } from "../firebase/firebaseConfig";
+import { auth, db } from "@/app/firebase/firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 
 const SignupForm: React.FC = () => {

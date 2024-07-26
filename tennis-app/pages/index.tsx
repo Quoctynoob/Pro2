@@ -1,6 +1,6 @@
-import Header from "@/app/components/Header";
-import Footer from "@/app/components/Footer";
-import Main from "@/app/components/Main";
+import Header from "@/app/components/welcome/Header";
+import Footer from "@/app/components/welcome/Footer";
+import Main from "@/app/components/layout/Main";
 import '@/app/styles/globals.css';
 
 const HomePage = () => {

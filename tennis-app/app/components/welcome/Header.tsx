@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import LoginModal from './LoginModal';
+import LoginModal from '../register/LoginModal';
 
 const Header = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);

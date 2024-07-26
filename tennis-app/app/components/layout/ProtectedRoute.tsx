@@ -1,7 +1,7 @@
 // app/components/ProtectedRoute.tsx
 import { ReactNode, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { auth } from "../firebase/firebaseConfig";
+import { auth } from "@/app/firebase/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 
 interface ProtectedRouteProps {

@@ -1,8 +1,7 @@
 import React from "react";
-import Hero from "./Hero";
-import About from "./About";
-import List from "./List";
-import Header from "./Header";
+import Hero from "../welcome/Hero";
+import About from "../welcome/About";
+import List from "../welcome/List";
 
 const Main = () => {
     return (

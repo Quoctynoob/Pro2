@@ -1,6 +1,6 @@
 // pages/dashboard.tsx
-import ProtectedRoute from "../app/components/ProtectedRoute";
-import DashboardContent from "@/app/components/DashboardContent";
+import ProtectedRoute from "@/app/components/layout/ProtectedRoute";
+import DashboardContent from "@/app/components/layout/DashboardContent";
 
 const DashboardPage: React.FC = () => {
   return (

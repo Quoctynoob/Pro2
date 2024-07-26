@@ -1,5 +1,5 @@
-import SignupForm from "@/app/components/SignUpForm";
-import Header from "@/app/components/Header";
+import SignupForm from "@/app/components/register/SignUpForm";
+import Header from "@/app/components/welcome/Header";
 
 const SignUpPage = () => {
     return (

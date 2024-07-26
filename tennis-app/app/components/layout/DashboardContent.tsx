@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { onAuthStateChanged, User, signOut } from "firebase/auth";
-import { auth, db } from "../firebase/firebaseConfig";
+import { auth, db } from "@/app/firebase/firebaseConfig";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import SideNavbar from "./navbarlogin";
 
-import Home from "./Home";
-import Map from "./Map";
-import Favorite from "./Favorite";
-import Library from "./Library";
-import SearchBar from "./SearchBar";
+import Home from "../tabs/Home";
+import Map from "../tabs/Map";
+import Favorite from "../tabs/Favorite";
+import Library from "../tabs/Library";
+import SearchBar from "../reusable/SearchBar";
 
 const DashboardContent: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
