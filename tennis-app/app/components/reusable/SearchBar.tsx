@@ -23,22 +23,16 @@ const SearchBar: React.FC = () => {
   };
 
   return (
-    <div className="relative mb-4">
-      <input
-        type="text"
-        value={query}
-        onChange={handleInputChange}
-        placeholder="Search courts..."
-        className="p-2 border border-gray-300 rounded"
-      />
-      <button
-        className="p-2 bg-blue-500 text-white rounded"
-        onClick={() => handleSearch(filteredCourts[0])}
-      >
+    //Search Bar with search button
+    <div className="relative mx-auto py-1 px-6 rounded-full bg-gray-50 border flex focus-within:border-gray-300">
+      <input type="text" value={query} onChange={handleInputChange} placeholder="Search courts..." className="bg-transparent w-full focus:outline-none pr-4 font-semibold border-0 focus:ring-0 px-0 py-0"/>
+      
+      <button onClick={() => handleSearch(filteredCourts[0])} className="flex flex-row items-center justify-center min-w-[130px] px-4 rounded-full border disabled:cursor-not-allowed disabled:opacity-50 transition ease-in-out duration-150 text-base bg-black text-white font-medium tracking-wide border-transparent py-1.5 h-[38px] -mr-3" >
         Search
       </button>
+      
       {query && (
-        <ul className="absolute bg-white border border-gray-300 rounded mt-1 w-full z-10">
+        <ul className="absolute bg-white border border-gray-300 rounded mt-11 w-full z-10">
           {filteredCourts.map((court) => (
             <li
               key={court.id}
