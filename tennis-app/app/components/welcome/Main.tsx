@@ -6,6 +6,7 @@ import List from "../welcome/List";
 const Main = () => {
     return (
         <main>
+            {/*Organizing files together*/}
             <Hero/>
             <About/>
             <List/>

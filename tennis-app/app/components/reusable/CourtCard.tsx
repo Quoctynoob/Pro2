@@ -8,7 +8,6 @@ interface CourtCardProps {
   tags?: string[]; // Optional tags prop
   link: string; // Destination URL for the link
 }
-//from-gray-800 to-gray-500
 const CourtCard: React.FC<CourtCardProps> = ({ id, name, image, tags, link }) => {
   return (
     <Link href={link} legacyBehavior>

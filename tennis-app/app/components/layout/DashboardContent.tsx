@@ -38,6 +38,7 @@ const DashboardContent: React.FC = () => {
     return () => unsubscribe();
   }, [router]);
 
+  //switch statement to change tab
   const renderContent = () => {
     switch(view) {
       case 'map':
@@ -52,7 +53,7 @@ const DashboardContent: React.FC = () => {
   }
   return (
     <div className="flex">
-      <SideNavbar setView={setView} activeView={view}/> {/* Add the Sidebar component */}
+      <SideNavbar setView={setView} activeView={view}/>
       <div className="flex-1 min-h-screen bg-green-50 p-6 ml-64">
           <SearchBar />
           {user ? (
