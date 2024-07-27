@@ -1,6 +1,6 @@
 import React from "react";
-import { auth, db } from "@/app/firebase/firebaseConfig";
-import { onAuthStateChanged, User, signOut } from "firebase/auth";
+import { auth } from "@/app/firebase/firebaseConfig";
+import { signOut } from "firebase/auth";
 import { useRouter } from "next/router";
 
 interface SideNavbarProps {

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { onAuthStateChanged, User, signOut } from "firebase/auth";
+import { onAuthStateChanged, User } from "firebase/auth";
 import { auth, db } from "@/app/firebase/firebaseConfig";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import SideNavbar from "./navbarlogin";
 
 import Home from "../tabs/Home";
@@ -55,6 +55,7 @@ const DashboardContent: React.FC = () => {
         return <Home/>
     }
   }
+
   return (
     <div className="flex">
       {/* Navbar */}
