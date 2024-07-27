@@ -31,7 +31,8 @@ const SideNavbar: React.FC<SideNavbarProps> = ({ setView, activeView }) => {
 
                 // Redirect to home page
                 router.push("/");
-            } catch (error) {
+            }
+            catch (error) {
                 console.error("Error deleting user: ", error);
             }
         }
