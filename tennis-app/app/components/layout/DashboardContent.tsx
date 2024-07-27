@@ -12,24 +12,27 @@ import Library from "../tabs/Library";
 import SearchBar from "../reusable/SearchBar";
 
 const DashboardContent: React.FC = () => {
+  //State to store user data
   const [user, setUser] = useState<User | null>(null);
   const [userData, setUserData] = useState<any>(null);
-  const [note, setNote] = useState<string>("");
   const [view, setView] = useState<string>('home');
+  //router for navigation
   const router = useRouter();
 
   useEffect(() => {
+    //Listener for authentication state change
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
+        //authentication user
         setUser(user);
 
         // Fetch user-specific data from Firestore
         const userDoc = await getDoc(doc(db, "users", user.uid));
         if (userDoc.exists()) {
           setUserData(userDoc.data());
-          setNote(userDoc.data().note || "");
         }
-      } 
+      }
+      //if not redirect back to home page
       else {
         router.push("/");
       }
@@ -38,7 +41,8 @@ const DashboardContent: React.FC = () => {
     return () => unsubscribe();
   }, [router]);
 
-  //switch statement to change tab
+
+  //switch statement to change tab but on the same page
   const renderContent = () => {
     switch(view) {
       case 'map':
@@ -53,7 +57,10 @@ const DashboardContent: React.FC = () => {
   }
   return (
     <div className="flex">
+      {/* Navbar */}
       <SideNavbar setView={setView} activeView={view}/>
+
+      {/* Main Content Area */}
       <div className="flex-1 min-h-screen bg-green-50 p-6 ml-64">
           <SearchBar />
           {user ? (
