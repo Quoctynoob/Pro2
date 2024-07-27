@@ -3,6 +3,7 @@ import { useState, FormEvent } from "react";
 import { useRouter } from "next/router";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, googleProvider, githubProvider } from "@/app/firebase/firebaseConfig";
+import CompleteProfileForm from "./CompleteProfileForm";
 
 interface LoginModalProps {
   onClose: () => void;
@@ -12,6 +13,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
+  const [user, setUser] = useState<any>(null);
   const router = useRouter();
 
   const handleLogin = async (e: FormEvent) => {
@@ -28,9 +30,8 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
 
   const handleGoogleSignIn = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
-      onClose(); // Close the modal on successful login
-      router.push("/dashboard");
+      const result = await signInWithPopup(auth, googleProvider);
+      setUser(result.user);
     }
     catch (err: any) {
       setError(err.message);
@@ -47,6 +48,10 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
       setError(err.message);
     }
   };
+
+  if (user) {
+    return <CompleteProfileForm user={user} />;
+  }
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
