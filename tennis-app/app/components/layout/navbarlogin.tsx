@@ -31,15 +31,19 @@ const SideNavbar: React.FC<SideNavbarProps> = ({ setView, activeView, firstName,
         setIsModalOpen(false);
     };
 
+    const handleProfileClick = () => {
+        router.push("/setting");
+    };
+
     const initials = getInitials(firstName, lastName);
 
     return (
         <nav className="fixed h-screen w-64 bg-black flex flex-col items-center">
             {/* Profile pics */}
-            <div className="h-20 w-20 mt-4 overflow-hidden rounded-full flex items-center justify-center bg-gray-500">
+            <div onClick={handleProfileClick} className="h-20 w-20 mt-4 overflow-hidden rounded-full flex items-center justify-center bg-gray-500">
                 <span className="text-xl font-bold text-white">{initials}</span>
             </div>
-            
+
             {/* List of tabs */}
             <ul className="flex flex-col p-4 mt-4 w-full">
                 <li className="mb-4">
