@@ -39,7 +39,7 @@ const SideNavbar: React.FC<SideNavbarProps> = ({ setView, activeView, firstName,
             <div className="h-20 w-20 mt-4 overflow-hidden rounded-full flex items-center justify-center bg-gray-500">
                 <span className="text-xl font-bold text-white">{initials}</span>
             </div>
-
+            
             {/* List of tabs */}
             <ul className="flex flex-col p-4 mt-4 w-full">
                 <li className="mb-4">
@@ -74,13 +74,7 @@ const SideNavbar: React.FC<SideNavbarProps> = ({ setView, activeView, firstName,
                 </li>*/}
             </ul>
 
-            <Modal
-                isOpen={isModalOpen}
-                onClose={closeModal}
-                onConfirm={onDeleteUser}
-                title="Confirm Deletion"
-                description="Are you sure you want to delete your account? This action cannot be undone."
-            />
+            <Modal isOpen={isModalOpen} onClose={closeModal} onConfirm={onDeleteUser} title="Confirm Deletion" description="Are you sure you want to delete your account? This action cannot be undone."/>
         </nav>
     );
 };
