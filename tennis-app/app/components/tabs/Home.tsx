@@ -1,12 +1,16 @@
 import React from "react";
 
-const Home: React.FC = () => {
+interface HomeProps {
+    username: string;
+}
+
+const Home: React.FC<HomeProps> = ({ username }) => {
     return (
         <div>
             {/* Welcome Message */}
             <div className="bg-white p-6 shadow rounded-lg mb-6 mt-3">
                 <h1 className="text-3xl font-bold mb-4">Welcome to Your Dashboard</h1>
-                <p className="text-xl">Hello, [User's Name]! Here's a quick overview of what's happening:</p>
+                <p className="text-xl">Hello, {username}! Here's a quick overview of what's happening:</p>
             </div>
 
 

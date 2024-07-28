@@ -70,11 +70,13 @@ const DashboardContent: React.FC = () => {
       case 'library':
         return <Library/>
       default:
-        return <Home/>
+        return <Home username={userData.username}/>
     }
   };
 
-  console.log("User Data:", userData);
+  if (!user || !userData) {
+    return <LoadingPage />;
+  }
 
   return (
     <div className="flex">
@@ -83,18 +85,8 @@ const DashboardContent: React.FC = () => {
 
       {/* Main Content Area */}
       <div className="flex-1 min-h-screen bg-green-50 p-6 ml-64">
-          <SearchBar />
-          {user ? (
-            userData ? (
-              <div>
-                {renderContent()}
-              </div>
-            ) : (
-              <LoadingPage/>
-            )
-          ) : (
-            <LoadingPage/>
-          )}
+        <SearchBar />
+        {renderContent()}
       </div>
     </div>
     
