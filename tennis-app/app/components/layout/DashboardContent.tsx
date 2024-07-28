@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { onAuthStateChanged, User } from "firebase/auth";
+import { onAuthStateChanged, User, signOut, deleteUser } from "firebase/auth";
 import { auth, db } from "@/app/firebase/firebaseConfig";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, deleteDoc } from "firebase/firestore";
 import SideNavbar from "./navbarlogin";
 
 import Home from "../tabs/Home";
@@ -42,6 +42,23 @@ const DashboardContent: React.FC = () => {
     return () => unsubscribe();
   }, [router]);
 
+  const handleDeleteUser = async () => {
+    const user = auth.currentUser;
+    if (user) {
+      try {
+        // Delete user data from Firestore
+        await deleteDoc(doc(db, "users", user.uid));
+
+        // Delete user authentication
+        await deleteUser(user);
+
+        // Redirect to home page
+        router.push("/");
+      } catch (error) {
+        console.error("Error deleting user: ", error);
+      }
+    }
+  };
 
   //switch statement to change tab but on the same page
   const renderContent = () => {
@@ -55,12 +72,14 @@ const DashboardContent: React.FC = () => {
       default:
         return <Home/>
     }
-  }
+  };
+
+  console.log("User Data:", userData);
 
   return (
     <div className="flex">
       {/* Navbar */}
-      <SideNavbar setView={setView} activeView={view}/>
+      <SideNavbar setView={setView} activeView={view} firstName={userData.firstName} lastName={userData.lastName} onDeleteUser={handleDeleteUser}/>
 
       {/* Main Content Area */}
       <div className="flex-1 min-h-screen bg-green-50 p-6 ml-64">
