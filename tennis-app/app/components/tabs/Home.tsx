@@ -1,5 +1,5 @@
 import React from "react";
-import WeatherWidget from "../reusable/weather";
+import WeatherWidget from "../reusable/Weather";
 
 interface HomeProps {
     username: string;
@@ -20,9 +20,7 @@ const Home: React.FC<HomeProps> = ({ username }) => {
                 <div className="bg-white p-6 shadow rounded-lg mb-6">
                     <h2 className="text-xl font-semibold mb-4">Announcements</h2>
                     <ul>
-                        <li className="mb-2">New court added: Downtown Arena</li>
-                        <li className="mb-2">Feature update: Enhanced court search filters</li>
-                        <li className="mb-2">Scheduled maintenance on July 30th</li>
+                        <li className="mb-2">Welcome and check out my website</li>
                     </ul>
                 </div>
 
@@ -30,8 +28,7 @@ const Home: React.FC<HomeProps> = ({ username }) => {
                 <div className="bg-white p-6 shadow rounded-lg mb-6">
                     <h2 className="text-xl font-semibold mb-4">Update Logs</h2>
                     <ul>
-                        <li className="mb-2">Version 1.2.0 - Added user profile editing</li>
-                        <li className="mb-2">Version 1.1.0 - Introduced interactive map</li>
+                        <li className="mb-2">Version 1.0.0 - App Deploy</li>
                     </ul>
                 </div>
             </div>
@@ -50,7 +47,7 @@ const Home: React.FC<HomeProps> = ({ username }) => {
                     <h2 className="text-xl font-semibold mb-4">Recent Court Reviews</h2>
                     {/* Placeholder for Recent Court Reviews */}
                     <div className="h-40 bg-gray-200 rounded-lg flex items-center justify-center">
-                        Recent Court Reviews
+                        Coming Soon...
                     </div>
                 </div>
             </div>
@@ -59,7 +56,10 @@ const Home: React.FC<HomeProps> = ({ username }) => {
             {/* Support and Help Section */}
             <footer className="bg-white p-6 shadow rounded-lg mt-6">
                 <h2 className="text-xl font-semibold mb-4">Support and Help</h2>
-                <p>If you need any assistance, please contact our support team at support@example.com.</p>
+                <p>
+                If there is any problem or any issues with the website please don't hesitate and reach out 
+                and contact me through tilburgquoc12@gmail.com.
+                </p>
             </footer>
         </div>
     );

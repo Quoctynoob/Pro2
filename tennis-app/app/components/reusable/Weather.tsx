@@ -55,7 +55,7 @@ const WeatherWidget: React.FC = () => {
   const { temp, humidity } = weatherData.main;
 
   return (
-    <div className="card bg-gradient-to-r from-gray-400 to-gray-900 text-white p-6 rounded-lg shadow-md">
+    <div className="card bg-gray-900 text-white p-6 rounded-lg shadow-md">
       <div className="search flex items-center mb-4">
         <input
           type="text"
