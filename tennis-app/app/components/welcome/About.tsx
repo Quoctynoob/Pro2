@@ -10,7 +10,7 @@ const About = () => {
     return (
         <section id= "about" className="bg-emerald-200 w-full h-screen p-8 snap-start justify-between items-center flex flex-row">
             <div className="w-1/2">
-                <img src="/images/tennis.jpg" alt="Tennis Court" />
+                <img src="/images/tennis.jpg" alt="Tennis Court"/>
             </div>
             <div className="w-1/2 p-11">
                 <div className="h-12 text-black text-4xl font-bold font-sans">About Us</div>

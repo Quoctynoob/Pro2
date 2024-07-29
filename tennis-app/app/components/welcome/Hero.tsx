@@ -26,8 +26,7 @@ const Hero = () => {
                     showStatus={false} 
                     infiniteLoop={true} 
                     autoPlay={true} 
-                    interval={3000}
-                >
+                    interval={3000}>
                     <div>
                         <img src="/images/claycourt.jpg" alt="Clay Court" className="h-full object-cover rounded-xl"/>
                     </div>

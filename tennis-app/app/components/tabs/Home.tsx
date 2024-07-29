@@ -1,4 +1,5 @@
 import React from "react";
+import WeatherWidget from "../reusable/weather";
 
 interface HomeProps {
     username: string;
@@ -40,10 +41,8 @@ const Home: React.FC<HomeProps> = ({ username }) => {
                 {/* Weather Section */}
                 <div className="bg-white p-6 shadow rounded-lg mb-6">
                     <h2 className="text-xl font-semibold mb-4">Weather</h2>
-                    {/* Placeholder for Weather Widget */}
-                    <div className="h-40 bg-gray-200 rounded-lg flex items-center justify-center">
-                        Weather Information
-                    </div>
+                    {/* Weather Widget */}
+                    <WeatherWidget />
                 </div>
 
                 {/* Recent Court Reviews Section */}
