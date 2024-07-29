@@ -24,8 +24,8 @@ const Header = () => {
       <div className="container mx-auto flex justify-between items-center">
         <nav className='flex -ml-7'>
           <a href="/"><img src="/icons/tennisball.svg" alt="Tennis Ball" className='w-16 h-16'/></a>
-          <a href="/"><span className="absolute left-10 mt-3 text-black text-2xl font-semibold font-['Noto Sans Bengali']">Te</span></a>
-          <a href="/"><span className="absolute left-16 mt-3 text-white text-2xl font-semibold font-['Noto Sans Bengali']">nnis Locator</span></a>
+          <a href="/"><span className="relative -left-8 top-3 text-black text-2xl font-semibold font-['Noto Sans Bengali']">Te</span></a>
+          <a href="/"><span className="relative -left-7 top-3 text-white text-2xl font-semibold font-['Noto Sans Bengali']">nnis Locator</span></a>
           
         </nav>
         <nav className='flex ml-auto '>

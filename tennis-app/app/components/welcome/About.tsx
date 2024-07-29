@@ -15,7 +15,7 @@ const About = () => {
             <div className="w-1/2 p-11">
                 <div className="h-12 text-black text-4xl font-bold font-sans">About Us</div>
                 <div className="h-[154px] text-black text-xl font-normal font-['Kameron']">
-                    Hi there! Welcome to my Website, a passion project dedicated to helping fellow tennis 
+                    Hi there! Welcome to my Website, a passion project dedicated helping tennis 
                     enthusiasts find the best courts in their area. As a tennis lover myself, I know how important 
                     it is to have a great place to play, and that's why I created this website.
                 </div>

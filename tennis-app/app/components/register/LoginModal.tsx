@@ -14,6 +14,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const [user, setUser] = useState<any>(null);
+  const [isClosing, setIsClosing] = useState(false);
   const router = useRouter();
 
   const handleLogin = async (e: FormEvent) => {
@@ -66,17 +67,22 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
     }
   };
 
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      onClose();
+      setIsClosing(false);
+    }, 500); // Match this duration with your CSS animation duration
+  };
+
   if (user) {
     return <CompleteProfileForm user={user} />;
   }
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-white p-8 rounded-2xl shadow-md w-full max-w-sm relative">
-        <button
-          onClick={onClose}
-          className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
-        >
+      <div className={`bg-white p-8 rounded-2xl shadow-md w-full max-w-sm relative modal-container ${isClosing ? 'fade-out' : ''}`}>
+        <button onClick={handleClose} className="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
           &times;
         </button>
         <h1 className="text-2xl font-bold mb-6 text-black">Login</h1>
