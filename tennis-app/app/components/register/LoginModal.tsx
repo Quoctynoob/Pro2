@@ -1,8 +1,8 @@
-// app/components/LoginModal.tsx
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/router";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { auth, googleProvider, githubProvider } from "@/app/firebase/firebaseConfig";
+import { auth, googleProvider, githubProvider, db } from "@/app/firebase/firebaseConfig";
+import { doc, getDoc } from "firebase/firestore";
 import CompleteProfileForm from "./CompleteProfileForm";
 
 interface LoginModalProps {
@@ -31,7 +31,16 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
   const handleGoogleSignIn = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
-      setUser(result.user);
+      const user = result.user;
+      const userDoc = await getDoc(doc(db, "users", user.uid));
+
+      if (userDoc.exists()) {
+        onClose();
+        router.push("/dashboard");
+      }
+      else {
+        setUser(user);
+      }
     }
     catch (err: any) {
       setError(err.message);
@@ -40,9 +49,17 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
 
   const handleGithubSignIn = async () => {
     try {
-      await signInWithPopup(auth, githubProvider);
-      onClose();
-      router.push("/dashboard");
+      const result = await signInWithPopup(auth, githubProvider);
+      const user = result.user;
+      const userDoc = await getDoc(doc(db, "users", user.uid));
+
+      if (userDoc.exists()) {
+        onClose();
+        router.push("/dashboard");
+      }
+      else {
+        setUser(user);
+      }
     }
     catch (err: any) {
       setError(err.message);

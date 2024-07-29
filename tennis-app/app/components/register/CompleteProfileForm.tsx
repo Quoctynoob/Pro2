@@ -1,7 +1,6 @@
-// app/components/CompleteProfileForm.tsx
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/router";
-import { auth, db } from "@/app/firebase/firebaseConfig";
+import { db } from "@/app/firebase/firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 
 interface CompleteProfileFormProps {
@@ -25,11 +24,11 @@ const CompleteProfileForm: React.FC<CompleteProfileFormProps> = ({ user }) => {
         username,
         email: user.email,
         createdAt: new Date(),
-        note: ""
       });
 
       router.push("/dashboard");
-    } catch (err: any) {
+    }
+    catch (err: any) {
       setError(err.message);
     }
   };
@@ -44,7 +43,7 @@ const CompleteProfileForm: React.FC<CompleteProfileFormProps> = ({ user }) => {
             <label className="block text-gray-700">First Name</label>
             <input
               type="text"
-              className="w-full p-2 border border-gray-300 rounded mt-1"
+              className="w-full p-2 border border-gray-300 rounded mt-1 text-black"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
               required
@@ -72,8 +71,7 @@ const CompleteProfileForm: React.FC<CompleteProfileFormProps> = ({ user }) => {
           </div>
           <button
             type="submit"
-            className="w-full bg-green-500 text-white p-2 rounded"
-          >
+            className="w-full bg-green-500 text-white p-2 rounded">
             Complete Profile
           </button>
         </form>
