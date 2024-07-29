@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { auth, db } from "@/app/firebase/firebaseConfig";
 import { updateProfile, updatePassword } from "firebase/auth";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { getInitials } from "@/app/components/utilites/getInitials";
 
 const Setting: React.FC = () => {
     const [firstName, setFirstName] = useState<string>("");
@@ -12,8 +13,24 @@ const Setting: React.FC = () => {
     const [newPassword, setNewPassword] = useState<string>("");
     const [confirmPassword, setConfirmPassword] = useState<string>("");
     const [profilePicture, setProfilePicture] = useState<string | null>(null);
+    const [successMessage, setSuccessMessage] = useState<string | null>(null);
+    const [userData, setUserData] = useState<any>(null);
 
     const router = useRouter();
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            const user = auth.currentUser;
+            if (user) {
+                const userDocRef = doc(db, "users", user.uid);
+                const userDoc = await getDoc(userDocRef);
+                if (userDoc.exists()) {
+                    setUserData(userDoc.data());
+                }
+            }
+        };
+        fetchUserData();
+    }, []);
 
     const handleProfilePictureChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
@@ -38,14 +55,14 @@ const Setting: React.FC = () => {
                 // Update Firestore
                 const userDocRef = doc(db, "users", user.uid);
                 await updateDoc(userDocRef, {
-                    firstName,
-                    lastName,
-                    username,
+                    firstName: firstName || userData.firstName,
+                    lastName: lastName || userData.lastName,
+                    username: username || userData.username,
                 });
 
                 // Update Auth profile
                 await updateProfile(user, {
-                    displayName: `${firstName} ${lastName}`,
+                    displayName: `${firstName || userData.firstName} ${lastName || userData.lastName}`,
                 });
 
                 // Update Password
@@ -53,8 +70,8 @@ const Setting: React.FC = () => {
                     await updatePassword(user, newPassword);
                 }
 
-                alert("Profile updated successfully.");
-                router.push("/dashboard");
+                setSuccessMessage("Profile updated successfully — view your profile.");
+                setTimeout(() => setSuccessMessage(null), 5000);
             } catch (error) {
                 console.error("Error updating profile: ", error);
                 alert("Error updating profile.");
@@ -62,8 +79,15 @@ const Setting: React.FC = () => {
         }
     };
 
+    const initials = getInitials(userData?.firstName || '', userData?.lastName || '');
+
     return (
         <div className="min-h-screen flex flex-col items-center bg-gray-100 p-6">
+            {successMessage && (
+                <div className="bg-green-500 text-white w-full p-4 rounded mb-6">
+                    {successMessage} <a href="/dashboard" className="underline">view your profile</a>.
+                </div>
+            )}
             <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
                 <h1 className="text-2xl font-bold mb-4">Settings</h1>
                 
@@ -74,7 +98,7 @@ const Setting: React.FC = () => {
                             <img src={profilePicture} alt="Profile" className="h-full w-full object-cover" />
                         ) : (
                             <div className="h-full w-full bg-gray-300 flex items-center justify-center">
-                                <span className="text-2xl text-white">P</span>
+                                <span className="text-2xl text-white">{initials}</span>
                             </div>
                         )}
                     </div>
@@ -87,9 +111,9 @@ const Setting: React.FC = () => {
                         <input 
                             type="text" 
                             className="w-full p-2 border border-gray-300 rounded mt-1"
+                            placeholder={userData?.firstName || ""}
                             value={firstName}
                             onChange={(e) => setFirstName(e.target.value)}
-                            required 
                         />
                     </div>
                     <div className="mb-4">
@@ -97,9 +121,9 @@ const Setting: React.FC = () => {
                         <input 
                             type="text" 
                             className="w-full p-2 border border-gray-300 rounded mt-1"
+                            placeholder={userData?.lastName || ""}
                             value={lastName}
                             onChange={(e) => setLastName(e.target.value)}
-                            required 
                         />
                     </div>
                     <div className="mb-4">
@@ -107,9 +131,9 @@ const Setting: React.FC = () => {
                         <input 
                             type="text" 
                             className="w-full p-2 border border-gray-300 rounded mt-1"
+                            placeholder={userData?.username || ""}
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
-                            required 
                         />
                     </div>
                     <div className="mb-4">
@@ -119,7 +143,6 @@ const Setting: React.FC = () => {
                             className="w-full p-2 border border-gray-300 rounded mt-1"
                             value={oldPassword}
                             onChange={(e) => setOldPassword(e.target.value)}
-                            required 
                         />
                     </div>
                     <div className="mb-4">
@@ -129,7 +152,6 @@ const Setting: React.FC = () => {
                             className="w-full p-2 border border-gray-300 rounded mt-1"
                             value={newPassword}
                             onChange={(e) => setNewPassword(e.target.value)}
-                            required 
                         />
                     </div>
                     <div className="mb-4">
@@ -139,7 +161,6 @@ const Setting: React.FC = () => {
                             className="w-full p-2 border border-gray-300 rounded mt-1"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
-                            required 
                         />
                     </div>
                     <button 
