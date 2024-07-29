@@ -1,9 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
 import LoginModal from '../register/LoginModal';
+import { useRouter } from 'next/router';
 
 const Header = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const router = useRouter();
 
   const openLoginModal = () => {
     setIsLoginModalOpen(true);
@@ -12,6 +14,10 @@ const Header = () => {
   const closeLoginModal = () => {
     setIsLoginModalOpen(false);
   };
+
+  const handleSignUp = () => {
+    router.push('/signup');
+  }
 
   return (
     <header className="bg-black p-1 text-white shadow-md w-full snap-start">
@@ -22,6 +28,16 @@ const Header = () => {
           <a href="/"><span className="absolute left-16 mt-3 text-white text-2xl font-semibold font-['Noto Sans Bengali']">nnis Locator</span></a>
           
         </nav>
+        <nav className='flex ml-auto '>
+          <button onClick={handleSignUp}>
+            Sign Up
+          </button>
+        </nav>
+
+        <div className='p-2'>
+          |
+        </div>
+
         <nav className='flex'>
           <button onClick={openLoginModal} className=''>Login</button>
           {isLoginModalOpen && <LoginModal onClose={closeLoginModal} />}
