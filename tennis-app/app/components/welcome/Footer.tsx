@@ -3,8 +3,8 @@ import React from 'react';
 const Footer = () => {
   return (
     <footer className="bg-green-100 p-4 text-black w-full snap-start">
-      <div className="container mx-auto flex justify-between items-center">
-        <span className='flex text-center text-l'>Quoc Le™. All Right Reserved.</span>
+      <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center">
+        <span className='text-center text-l mb-4 lg:mb-0'>Quoc Le™. All Right Reserved.</span>
         <div className='flex space-x-4'>
           <a href="https://github.com/Quoctynoob"><img src="/icons/github.svg" className="w-6 h-6" alt="GitHub" /></a>
           <a href="https://www.instagram.com/tilburgquoc/"><img src="/icons/instagram.svg" className="w-6 h-6" alt="Instagram" /></a>

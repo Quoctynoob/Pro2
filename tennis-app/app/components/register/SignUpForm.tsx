@@ -13,7 +13,7 @@ const SignupForm: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
-  const [user, setUser] = useState<any>(null);
+  const [user] = useState<any>(null);
   const router = useRouter();
 
   const handleSignup = async (e: FormEvent) => {
@@ -35,26 +35,6 @@ const SignupForm: React.FC = () => {
       router.push("/dashboard");
     }
     catch (err: any) {
-      setError(err.message);
-    }
-  };
-
-  const handleGoogleSignup = async () => {
-    try {
-      const provider = new GoogleAuthProvider();
-      const result = await signInWithPopup(auth, provider);
-      setUser(result.user);
-    } catch (err: any) {
-      setError(err.message);
-    }
-  };
-
-  const handleGithubSignup = async () => {
-    try {
-      const provider = new GithubAuthProvider();
-      const result = await signInWithPopup(auth, provider);
-      setUser(result.user);
-    } catch (err: any) {
       setError(err.message);
     }
   };
@@ -97,18 +77,6 @@ const SignupForm: React.FC = () => {
             Signup
           </button>
         </form>
-        <button
-          onClick={handleGoogleSignup}
-          className="w-full bg-blue-500 text-white p-2 rounded mb-2"
-        >
-          Signup with Google
-        </button>
-        <button
-          onClick={handleGithubSignup}
-          className="w-full bg-gray-800 text-white p-2 rounded"
-        >
-          Signup with GitHub
-        </button>
       </div>
     </div>
   );

@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import LoginModal from '../register/LoginModal';
 import { useRouter } from 'next/router';
 
@@ -26,22 +25,17 @@ const Header = () => {
           <a href="/"><img src="/icons/tennisball.svg" alt="Tennis Ball" className='w-16 h-16'/></a>
           <a href="/"><span className="relative -left-8 top-3 text-black text-2xl font-semibold font-['Noto Sans Bengali']">Te</span></a>
           <a href="/"><span className="relative -left-7 top-3 text-white text-2xl font-semibold font-['Noto Sans Bengali']">nnis Locator</span></a>
-          
         </nav>
-        <nav className='flex ml-auto '>
+        <nav className='flex ml-auto space-x-2'>
           <button onClick={handleSignUp}>
             Sign Up
           </button>
+          <span>|</span>
+          <button onClick={openLoginModal}>
+            Login
+          </button>
         </nav>
-
-        <div className='p-2'>
-          |
-        </div>
-
-        <nav className='flex'>
-          <button onClick={openLoginModal} className=''>Login</button>
-          {isLoginModalOpen && <LoginModal onClose={closeLoginModal} />}
-        </nav>
+        {isLoginModalOpen && <LoginModal onClose={closeLoginModal} />}
       </div>
     </header>
   );
