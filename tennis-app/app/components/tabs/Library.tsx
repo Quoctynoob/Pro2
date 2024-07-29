@@ -2,7 +2,12 @@ import React from 'react';
 import { courts } from '@/data/courtsData'; // Adjust the path as needed
 import CourtCard from '../reusable/CourtCard'; // Import the CourtCard component
 
-const Library: React.FC = () => {
+interface LibraryProps {
+  favorites: string[];
+  onFavoriteToggle: (id: string) => void;
+}
+
+const Library: React.FC<LibraryProps> = ({ favorites, onFavoriteToggle }) => {
   return (
     <div className="p-4">
       <h1 className="text-2xl mb-4">Courts</h1>
@@ -15,6 +20,8 @@ const Library: React.FC = () => {
             image={court.image}
             tags={court.tags} // Pass the tags data here
             link={`/courts/${court.id}`}
+            isFavorite={favorites.includes(court.id)}
+            onFavoriteToggle={onFavoriteToggle}
           />
         ))}
       </div>

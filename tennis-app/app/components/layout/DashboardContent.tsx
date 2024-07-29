@@ -13,18 +13,18 @@ import SearchBar from "../reusable/SearchBar";
 import LoadingPage from "../reusable/LoadingPage";
 
 const DashboardContent: React.FC = () => {
-  //State to store user data
+  // State to store user data
   const [user, setUser] = useState<User | null>(null);
   const [userData, setUserData] = useState<any>(null);
   const [view, setView] = useState<string>('home');
-  //router for navigation
+  const [favorites, setFavorites] = useState<string[]>([]);
   const router = useRouter();
 
   useEffect(() => {
-    //Listener for authentication state change
+    // Listener for authentication state change
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        //authentication user
+        // Authentication user
         setUser(user);
 
         // Fetch user-specific data from Firestore
@@ -33,11 +33,15 @@ const DashboardContent: React.FC = () => {
           setUserData(userDoc.data());
         }
       }
-      //if not redirect back to home page
+      // If not redirect back to home page
       else {
         router.push("/");
       }
     });
+
+    // Load favorites from localStorage
+    const savedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    setFavorites(savedFavorites);
 
     return () => unsubscribe();
   }, [router]);
@@ -60,15 +64,23 @@ const DashboardContent: React.FC = () => {
     }
   };
 
-  //switch statement to change tab but on the same page
+  const handleFavoriteToggle = (id: string) => {
+    const updatedFavorites = favorites.includes(id) ? favorites.filter(favId => favId !== id) : [...favorites, id];
+    setFavorites(updatedFavorites);
+
+    // Update localStorage or other persistent storage
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+  };
+
+  // Switch statement to change tab but on the same page
   const renderContent = () => {
     switch(view) {
       case 'map':
         return <Map/>
       case 'favorite':
-        return <Favorite/>
+        return <Favorite favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
       case 'library':
-        return <Library/>
+        return <Library favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
       default:
         return <Home username={userData.username}/>
     }
