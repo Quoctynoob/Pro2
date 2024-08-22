@@ -57,8 +57,8 @@ const Home: React.FC<HomeProps> = ({ username }) => {
             <footer className="bg-white p-6 shadow rounded-lg mt-6">
                 <h2 className="text-xl font-semibold mb-4">Support and Help</h2>
                 <p>
-                If there is any problem or any issues with the website please don't hesitate and reach out 
-                and contact me through tilburgquoc12@gmail.com.
+                    If there is any problem or any issues with the website please don't hesitate and reach out 
+                    and contact me through tilburgquoc12@gmail.com.
                 </p>
             </footer>
         </div>

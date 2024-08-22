@@ -78,10 +78,8 @@ const Map: React.FC = () => {
           </InfoWindow>
         )}
       </GoogleMap>
-      <button
-        onClick={toggleMarkers}
-        className="absolute bottom-6 left-2 bg-lime-300 rounded-md px-4 py-2 text-lg font-semibold transition-transform transform hover:scale-105"
-      >
+      <button onClick={toggleMarkers} 
+      className="absolute bottom-6 left-2 bg-lime-300 rounded-md px-4 py-2 text-lg font-semibold transition-transform transform hover:scale-105">
         {showMarkers ? 'Hide Markers' : 'Display All Markers'}
       </button>
     </div>
