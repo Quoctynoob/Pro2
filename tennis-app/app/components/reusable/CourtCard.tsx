@@ -53,8 +53,7 @@ const CourtCard: React.FC<CourtCardProps> = ({ id, name, image, tags, link, isFa
                 <li
                   key={index}
                   title="type"
-                  className="flex items-center cursor-pointer gap-0.5 bg-modpurple text-black px-2 py-0.5 rounded-full"
-                >
+                  className="flex items-center cursor-pointer gap-0.5 bg-modpurple text-black px-2 py-0.5 rounded-full">
                   <span>{tag}</span>
                 </li>
               ))}

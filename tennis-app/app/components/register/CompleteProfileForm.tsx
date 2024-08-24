@@ -34,8 +34,8 @@ const CompleteProfileForm: React.FC<CompleteProfileFormProps> = ({ user }) => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded shadow-md w-full max-w-sm">
+    <div className="flex items-center justify-center min-h-screen bg-mintCream">
+      <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-sm">
         <h1 className="text-2xl font-bold mb-6">Complete Your Profile</h1>
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <form onSubmit={handleCompleteProfile}>

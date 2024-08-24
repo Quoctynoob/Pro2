@@ -25,6 +25,9 @@ const config: Config = {
         'modpurple': '#95ADE5',
         
       },
+      fontFamily: {
+        matemasie: ['Matemasie', 'sans-serif'],
+      },
     },
   },
   plugins: [],

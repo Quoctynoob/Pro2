@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
 import { Carousel } from 'react-responsive-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const Hero = () => {
     const router = useRouter();
@@ -10,9 +10,9 @@ const Hero = () => {
     };
 
     return (
-        <section id="hero" className="bg-green-50 w-full h-[574px] flex flex-col lg:flex-row justify-between items-center">
+        <section id="hero" className="text-black bg-green-50 w-full h-[574px] flex flex-col lg:flex-row justify-between items-center">
             <div className="h-[99px] w-full lg:w-[618px] p-2">
-                <div className="text-[64px] font-bold font-['Noto Sans Bengali']">Game, Set, Match!</div>
+                <div className="text-[64px] font-bold font-['Noto Sans Bengali'] ">Game, Set, Match!</div>
                 <div className="text-2xl font-normal font-['Kameron']">Find the ideal place to play tennis near you.</div>
                 <button onClick={SignUpButton} className="bg-lime-300 rounded-md w-full lg:w-[131px] h-8 text-center">
                     Get Started

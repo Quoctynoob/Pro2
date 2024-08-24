@@ -43,8 +43,8 @@ const SignupForm: React.FC = () => {
     return <CompleteProfileForm user={user} />;
   }
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded shadow-md w-full max-w-sm">
+    <div className="flex items-center justify-center min-h-screen bg-mintCream">
+      <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-sm">
         <h1 className="text-2xl font-bold mb-6">Signup</h1>
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <form onSubmit={handleSignup}>
@@ -73,7 +73,7 @@ const SignupForm: React.FC = () => {
             <input type="password" className="w-full p-2 border border-gray-300 rounded mt-1" value={password} onChange={(e) => setPassword(e.target.value)} required/>
           </div>
 
-          <button type="submit" className="w-full bg-green-500 text-white p-2 rounded">
+          <button type="submit" className="w-full bg-gray-900 border border-transparent rounded-xl text-white cursor-pointer font-sans font-semibold text-lg leading-6 px-4 py-3 text-center transition duration-200 ease-in-out hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-transparent">
             Signup
           </button>
         </form>
@@ -83,3 +83,4 @@ const SignupForm: React.FC = () => {
 };
 
 export default SignupForm;
+

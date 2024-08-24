@@ -132,7 +132,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
             />
           </div>
 
-          <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded">
+          <button type="submit" className="w-full bg-gray-900 border border-transparent rounded-xl text-white cursor-pointer font-sans font-semibold text-lg leading-6 px-4 py-3 text-center transition duration-200 ease-in-out hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-transparent">
             Login
           </button>
 
