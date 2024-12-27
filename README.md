@@ -19,7 +19,3 @@ Tennis Locator is a web application that helps tennis enthusiasts find and bookm
 ## Deployment
 
 The project is deployed on Vercel.
-
-## Contributing
-
-Contributions are welcome! Please let me know 
